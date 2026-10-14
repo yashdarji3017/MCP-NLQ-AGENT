@@ -1,0 +1,43 @@
+[project]
+name = "dataquery-ai"
+version = "0.1.0"
+description = "Production-grade Natural Language to SQL Assistant with PydanticAI, Gemini, and MCP"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pydantic-ai>=0.0.18",
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.2.0",
+    "sqlalchemy>=2.0.30",
+    "psycopg[binary]>=3.1.18",
+    "fastapi>=0.111.0",
+    "uvicorn>=0.30.0",
+    "streamlit>=1.35.0",
+    "pandas>=2.2.0",
+    "plotly>=5.22.0",
+    "httpx>=0.27.0",
+    "python-dotenv>=1.0.1",
+    "mcp>=1.1.2",
+    "sqlglot>=25.0.0",
+    "fastmcp>=4.1.0",
+]
+
+[project.scripts]
+dataquery-api = "dataquery.main:start_api"
+dataquery-mcp = "dataquery.mcp.server:main"
+dataquery-ui = "dataquery.main:start_ui"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dataquery"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]
